@@ -1,0 +1,11 @@
+﻿dotnet aspnet-codegenerator razorpage -m Game -dc ApplicationDbContext -udl -outDir Pages/Games --referenceScriptLibraries -f
+dotnet aspnet-codegenerator razorpage -m Config -dc ApplicationDbContext -udl -outDir Pages/Configss --referenceScriptLibraries -f
+dotnet aspnet-codegenerator razorpage -m Config -dc ApplicationDbContext -udl -outDir Pages/Configs --referenceScriptLibraries -f
+
+
+dotnet aspnet-codegenerator razorpage -m Config -dc ApplicationDbContext -udl -outDir Pages/Configs --referenceScriptLibraries -f
+dotnet aspnet-codegenerator razorpage -m Domain.ShipConfig -dc ApplicationDbContext -udl -outDir Pages/ShipConfigs --referenceScriptLibraries -f
+dotnet aspnet-codegenerator razorpage -m Domain.TouchRule -dc ApplicationDbContext -udl -outDir Pages/TouchRules --referenceScriptLibraries -f
+
+dotnet aspnet-codegenerator razorpage -m Game -dc ApplicationDbContext -udl -outDir Pages/Games --referenceScriptLibraries -f
+

@@ -1,0 +1,66 @@
+@page
+@using Domain
+@using WebApp.Pages_Games
+@model WebApp.Pages_ShipConfigs.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ShipConfig</h4>
+<div class="success">
+    @foreach (var error in Model.SuccessMessage)
+    {
+        @error.ToString()
+        ;
+    }
+</div>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ShipConfig.ShipConfigId"/>
+            <div class="form-group">
+                <label asp-for="ShipConfig.Name" class="control-label"></label>
+                <input asp-for="ShipConfig.Name" class="form-control"/>
+                <span asp-validation-for="ShipConfig.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShipConfig.Quantity" class="control-label"></label>
+                <input asp-for="ShipConfig.Quantity" class="form-control"/>
+                <span asp-validation-for="ShipConfig.Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShipConfig.ShipSizeY" class="control-label"></label>
+                <input asp-for="ShipConfig.ShipSizeY" class="form-control"/>
+                <span asp-validation-for="ShipConfig.ShipSizeY" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShipConfig.ShipSizeX" class="control-label"></label>
+                <input asp-for="ShipConfig.ShipSizeX" class="form-control"/>
+                <span asp-validation-for="ShipConfig.ShipSizeX" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="ShipConfig.ConfigId"/>
+
+            @* <div class="form-group"> *@
+            @*     <label asp-for="ShipConfig.ConfigId" class="control-label"></label> *@
+            @*     <select asp-for="ShipConfig.ConfigId" class="form-control" asp-items="ViewBag.ConfigId"></select> *@
+            @*     <span asp-validation-for="ShipConfig.ConfigId" class="text-danger"></span> *@
+            @* </div> *@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index" asp-route-id="@Model.ShipConfig.ConfigId">Back to List</a>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

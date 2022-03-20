@@ -1,0 +1,44 @@
+﻿@page
+@using BLL
+@using BLL.BoardObjects
+@model WebApp.Pages.Game.Index
+@{
+    ViewData["Title"] = "GameBrain";
+}
+@if (Index.GameBrain.AllShipsSunk(Index.GameBrain.GetBoardStates().attackingPlayerState))
+{
+    <meta http-equiv="refresh" content="0.1; URL=VictoryScreen"/>
+}
+<p>Move Result</p>
+<div class="moveResult">
+    @foreach (var moveResult in Index.MoveResult)
+    {
+        @moveResult.ToString() <br>
+
+    }
+</div>
+<div class="Player1Board">
+    @(Index.GameBrain.GetBoardStates().attackingPlayerState.PlayerName) board
+    <div class="row">
+        <div class="col">
+            <table class="" border="1">
+                @for (int y = 0; y < Index.GameBrain.BoardHeight; y++)
+                {
+                    <tr style="height: 30px;">
+                        @for (int x = 0; x < Index.GameBrain.BoardWidth; x++)
+                        {
+                            <td style="width: 30px;">
+                                @(Index.GameBrain.GetBoardStates().attackingPlayerState.Board[x, y] == CellState.Ship ? " " : 
+                                Index.CellString(Index.GameBrain.GetBoardStates().attackingPlayerState.Board[x, y]) )
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+Give game to the other player and press     
+<div style="cursor: pointer" class="ok" onclick="window.location.href = '/Game'"> OK </div>

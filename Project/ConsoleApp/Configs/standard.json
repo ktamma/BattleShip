@@ -1,0 +1,39 @@
+{
+  "BoardSizeX": 4,
+  "BoardSizeY": 4,
+  "Player1Name": "A",
+  "Player2Name": "B",
+  "ShipConfigs": [
+    {
+      "Name": "Patrol",
+      "Quantity": 5,
+      "ShipSizeY": 1,
+      "ShipSizeX": 1
+    },
+    {
+      "Name": "Cruiser",
+      "Quantity": 4,
+      "ShipSizeY": 1,
+      "ShipSizeX": 2
+    },
+    {
+      "Name": "Submarine",
+      "Quantity": 3,
+      "ShipSizeY": 1,
+      "ShipSizeX": 3
+    },
+    {
+      "Name": "Battleship",
+      "Quantity": 2,
+      "ShipSizeY": 1,
+      "ShipSizeX": 4
+    },
+    {
+      "Name": "Carrier",
+      "Quantity": 1,
+      "ShipSizeY": 1,
+      "ShipSizeX": 5
+    }
+  ],
+  "EShipTouchRule": 0
+}

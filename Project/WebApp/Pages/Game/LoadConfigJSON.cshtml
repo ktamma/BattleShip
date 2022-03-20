@@ -1,0 +1,44 @@
+﻿@page
+@using BLL
+@using WebApp.Pages_Games
+@using System.Net
+@using Domain
+@using System.Collections
+@model WebApp.Pages.Game.LoadConfigJSON
+
+
+@{
+    ViewData["Games"] = "Games";
+}
+
+<h1>Configurations</h1>
+
+
+<table class="table">
+    <thead>
+    <tr>
+
+        <th>
+            Config name
+        </th>
+
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (var i = 0; i < LoadConfigJSON.Configs.Count; i++)
+    {
+        <tr>
+            <td>
+                @LoadConfigJSON.Configs[i];
+            </td>
+            <td>
+                <a asp-page="./LoadConfigJSON" asp-route-action="setConfigFromJSON" asp-route-id="@i">Set as current configuration</a> |
+            </td>
+        </tr>
+    }
+
+    </tbody>
+</table>
+
+<a asp-page="../Index"> Back</a>

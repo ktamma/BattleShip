@@ -1,0 +1,97 @@
+﻿@page
+@using BLL
+@using BLL.BoardObjects
+@using BLL.ShipObjects
+@model WebApp.Pages.Game.Index
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - ShipPlacement</title>
+    <link rel="stylesheet" href="~/css/site.css"/>
+</head>
+
+@{
+    // ViewData["Title"] = "GameBrain";
+    ViewData["errors"] = "Errors";
+
+}
+@if (Index.GameBrain.NoMoreShips() && Index.GameBrain.Player2State.PlayerName == Index.GameBrain.GetBoardStates().attackingPlayerState.PlayerName)
+{
+    <meta http-equiv="refresh" content="0.1; URL=Index?action=firstLoad"/>
+}
+<div class="errors1">
+    @foreach (var error in Index.Errors)
+    {
+        <div class="error">@error.ToString()</div>
+        
+    }
+</div>
+Select direction and choose ship starting position on board.
+
+<dl class="row">
+    <dt class="col-sm-2">
+        <div> </div>
+    </dt>
+    <dt class="col-sm-2">
+        <div style="cursor: pointer" class="up" onclick="window.location.href = '/Game/ShipPlacement?direction=@Direction.Up&action=chooseDirection' "> <h4>&#8593;</h4> </div>
+    </dt>
+    <dt class="col-sm-8">
+        <div> </div>
+    </dt>
+</dl>
+
+<dl class="row">
+    <dt class="col-sm-2">
+        <div style="cursor: pointer" class="left" onclick="window.location.href = '/Game/ShipPlacement?direction=@Direction.Left&action=chooseDirection' "> <h4>&#8592;</h4> </div>
+    </dt>
+    <dt class="col-sm-2">
+        <div> </div>
+    </dt>
+    <dd class="col-sm-8">
+        <div style="cursor: pointer" class="right" onclick="window.location.href = '/Game/ShipPlacement?direction=@Direction.Right&action=chooseDirection' "><h4>&#8594;</h4>  </div>
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="col-sm-2">
+        <div> </div>
+    </dt>
+    <dt class="col-sm-4">
+        <div style="cursor: pointer" class="down" onclick="window.location.href = '/Game/ShipPlacement?direction=@Direction.Down&action=chooseDirection' "> <h4>&#8595;</h4> </div>
+    </dt>
+</dl>
+
+
+@* <div class="Direction"> *@
+@*     <div style="cursor: pointer" class="up" onclick="window.location.href = '/Game/ShipPlacement?direction=@Direction.Up&action=chooseDirection' "> &#8593; </div> *@
+@*     <div style="cursor: pointer" class="left" onclick="window.location.href = '/Game/ShipPlacement?direction=@Direction.Left&action=chooseDirection' "> &#8592; </div> *@
+@*     <div style="cursor: pointer" class="right" onclick="window.location.href = '/Game/ShipPlacement?direction=@Direction.Right&action=chooseDirection' "> &#8594; </div> *@
+@*     <div style="cursor: pointer" class="down" onclick="window.location.href = '/Game/ShipPlacement?direction=@Direction.Down&action=chooseDirection' "> &#8595; </div> *@
+@* </div> *@
+<div class="PlayerMove">
+    @(Index.GameBrain.GetBoardStates().attackingPlayerState.PlayerName) turn to place a ship
+</div>
+<div class="Player1Board">
+    @(Index.GameBrain.GetBoardStates().attackingPlayerState.PlayerName) board
+    <div class="row">
+        <div class="col">
+            <table class="" border="1">
+                @for (int y = 0; y < Index.GameBrain.BoardHeight; y++)
+                {
+                    <tr style="height: 30px;">
+                        @for (int x = 0; x < Index.GameBrain.BoardWidth; x++)
+                        {
+                            <td style="width: 30px; cursor: pointer" onclick="window.location.href = '/Game/ShipPlacement?x=@x&y=@y&action=placeShip' ">
+                                @(Index.CellString(Index.GameBrain.GetBoardStates().attackingPlayerState.Board[x, y]))
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

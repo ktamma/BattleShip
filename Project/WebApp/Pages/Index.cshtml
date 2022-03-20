@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Main Menu</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                <a asp-page="/Game/ShipPlacement" asp-route-action="newGame">New Game</a>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <a asp-page="/Game/Index" asp-route-action="randomShips">New Game with Random Ships</a>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <a asp-page="/Game/CreateConfig">Game Settings</a>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <a asp-page="/Game/LoadConfigJSON">Choose current Configuration from json</a>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <a asp-page="/Configs/Index">Choose current Configuration from db</a>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <a asp-page="/Game/Load">Load Game from DB</a>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <a asp-page="/Game/LoadGameJson">Load game from JSON</a>
+            </th>
+        </tr>
+        </thead>
+    </table>
+</div>

@@ -1,0 +1,103 @@
+﻿@page
+@using BLL
+@using BLL.BoardObjects
+@model WebApp.Pages.Game.Index
+@{
+    ViewData["Title"] = "GameBrain";
+}
+@if (Index.GameBrain.AllShipsSunk(Index.GameBrain.GetBoardStates().attackingPlayerState))
+{
+    Redirect("./VictoryScreen");
+}
+<div class="errors">
+    @foreach (var error in Index.Errors)
+    {
+        <div class="error">@error.ToString()</div>
+        
+    }
+</div>
+<div class="PlayerMove">
+    @(Index.GameBrain.GetBoardStates().attackingPlayerState.PlayerName) turn to make a move
+</div>
+<div class="Player1Board">
+    @(Index.GameBrain.GetBoardStates().defendingPlayerState.PlayerName) board
+
+    <div class="row">
+        <div class="col">
+            <table class="">
+                <tr style="height: 30px;">
+                    @for (int x = 0; x < Index.GameBrain.BoardWidth; x++)
+                    {
+                        <td style="width: 30px">
+                            @($"{Index.Letters[x].ToString()}")
+                        </td>
+                    }
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col">
+            <table class="" border="1">
+                @for
+                    (int y = 0;
+                    y < Index.GameBrain.BoardHeight;
+                    y
+                        ++)
+                {
+                    <tr style="height: 30px;">
+                        @for (int x = 0; x < Index.GameBrain.BoardWidth; x++)
+                        {
+                            <td style="width: 30px; cursor: pointer" onclick="window.location.href = '/Game/MoveResult?x=@x&y=@y&action=move' ">
+                                @(Index.GameBrain.GetBoardStates().defendingPlayerState.Board[x, y] == CellState.Ship ? " " :
+                                    Index.CellString(Index.GameBrain.GetBoardStates().defendingPlayerState.Board[x, y]))
+                            </td>
+                        }
+
+                        <td style="width: 30px;">
+                            @(y + 1)
+                        </td>
+                    </tr>
+                }
+                
+
+            </table>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+
+<div class="Player2Board">
+    @(Index.GameBrain.GetBoardStates().attackingPlayerState.PlayerName) board
+
+    <div class="row">
+        <div class="col">
+            <table class="" border="1">
+                @for (int y = 0; y < Index.GameBrain.BoardHeight; y++)
+                {
+                    <tr style="height: 30px;">
+                        @for (int x = 0; x < Index.GameBrain.BoardWidth; x++)
+                        {
+                            <td style="width: 30px">
+                                @(Index.CellString(Index.GameBrain.GetBoardStates().attackingPlayerState.Board[x, y]))
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+<a asp-page="./Index" asp-route-action="back">Back</a>
+<a asp-page="./SaveGame" asp-route-action="save">Save game</a>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

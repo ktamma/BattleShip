@@ -1,0 +1,27 @@
+﻿@page
+@model WebApp.Pages.Test
+
+@{
+    Layout = null;
+}
+<table class="table table-striped">
+    @foreach (var game in Model.Games)
+    {
+        <tr>
+    <td>
+        @game.GameName</td>
+    </tr>
+    }
+</table>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>test</title>
+</head>
+<body>
+<div>
+    
+</div>
+</body>
+</html>

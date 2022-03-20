@@ -1,0 +1,44 @@
+﻿@page
+@using BLL
+@using WebApp.Pages_Games
+@using System.Net
+@using Domain
+@using System.Collections
+@model WebApp.Pages.Game.LoadGameJSON
+
+@{
+    ViewData["Games"] = "Games";
+}
+
+<h1>Games</h1>
+
+
+<table class="table">
+    <thead>
+    <tr>
+
+        <th>
+            Save name
+        </th>
+
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (var i = 0; i < LoadGameJSON.Games.Count; i++)
+    {
+        <tr>
+            <td>
+                @LoadGameJSON.Games[i];
+            </td>
+            <td>
+
+                <a asp-page="./Index" asp-route-action="loadFromJson" asp-route-id="@i">Load</a>
+            </td>
+        </tr>
+    }
+
+    </tbody>
+</table>
+
+<a asp-page="../Index"> Back</a>

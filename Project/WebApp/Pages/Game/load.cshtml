@@ -1,0 +1,50 @@
+@page
+@model WebApp.Pages_Games.IndexModel
+
+@{
+    ViewData["Title"] = "GameBrain";
+}
+
+<h1>Games</h1>
+
+
+<table class="table">
+    <thead>
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Game[0].Player1Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Game[0].Player2Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Game[0].GameName)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Game)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Player1Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Player2Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameName)
+            </td>
+
+            <td>
+                <a asp-page="./Index" asp-route-action="load" asp-route-id="@item.GameId">Load</a> |
+                <a asp-page="./DeleteGame" asp-route-action="delete" asp-route-id="@item.GameId">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<a asp-page="../Index"> Back</a>

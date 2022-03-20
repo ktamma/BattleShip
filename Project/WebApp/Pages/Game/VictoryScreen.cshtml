@@ -1,0 +1,52 @@
+﻿@page
+@model WebApp.Pages.Game.Index
+<h1>GAME OVER!</h1>
+<div class="WinnerBoard">
+   <h4> @(Index.GameBrain.GetBoardStates().defendingPlayerState.PlayerName) is the winner!</h4>
+
+    <div class="row">
+        <div class="col">
+            <table class="" border="1">
+                @for (int y = 0; y < Index.GameBrain.BoardHeight; y++)
+                {
+                    <tr style="height: 30px;">
+                        @for (int x = 0; x < Index.GameBrain.BoardWidth; x++)
+                        {
+                            <td style="width: 30px">
+                                @(Index.CellString(Index.GameBrain.GetBoardStates().defendingPlayerState.Board[x, y]))
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+
+<div class="LoserBoard">
+    @(Index.GameBrain.GetBoardStates().attackingPlayerState.PlayerName) board
+
+    <div class="row">
+        <div class="col">
+            <table class="" border="1">
+                @for (int y = 0; y < Index.GameBrain.BoardHeight; y++)
+                {
+                    <tr style="height: 30px;">
+                        @for (int x = 0; x < Index.GameBrain.BoardWidth; x++)
+                        {
+                            <td style="width: 30px">
+                                @(Index.CellString(Index.GameBrain.GetBoardStates().attackingPlayerState.Board[x, y]))
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+</div>

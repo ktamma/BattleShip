@@ -1,0 +1,16 @@
+﻿@page
+@model WebApp.Pages.Game.Index
+
+<form method="post" asp-page="./Index">
+    <input type="text" name="saveName" value="@DateTime.Now-save" size="50">
+  <div>
+    <input type="checkbox" id="saveToDatabase" name="DBsave" value="save">
+    <label for="saveToDatabase">Save to database</label>
+  </div>
+  <div>
+    <input type="checkbox" id="saveToJSON" name="JSONsave" value="save">
+    <label for="saveToJSON">Save to local device</label>
+  </div>
+
+    <input type="submit">
+</form>

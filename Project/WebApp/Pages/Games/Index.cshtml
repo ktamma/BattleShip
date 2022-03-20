@@ -1,0 +1,78 @@
+@page
+@model WebApp.Pages_Games.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].MoveByPlayer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].Board1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].Board2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].Width)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].Player1Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].Player2Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game[0].GameName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Game) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoveByPlayer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Board1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Board2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Width)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Height)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Player1Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Player2Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.GameId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.GameId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.GameId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
